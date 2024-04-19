@@ -1,9 +1,11 @@
 'use client';
 
+import { useWeather } from '@/providers/WeatherContext';
 import { useRouter } from 'next/navigation';
-import Fetch from "@/components/fetch";
+import WeatherAPI from "@/components/weatherAPI";
 
 export default function Home() {
+  const { weather, handleCityChange, handleSubmit } = WeatherAPI();
   const router = useRouter();
 
   return (
@@ -11,7 +13,12 @@ export default function Home() {
       <p>Place location here</p>
       <h1>Fetch API data and place the temperature here</h1>
       <p>Fetch the API data and place the kind of weather here (kind as in mostly sunny etc.)</p>
-      <Fetch />
+      <div>
+            <form onSubmit={handleSubmit}>
+                <input type="text" onChange={handleCityChange} placeholder='Enter city name'/>
+            </form>
+            {weather && <div>{JSON.stringify(weather)}</div>}
+        </div>
       <button type="button" onClick={() => router.push('/start')} ></button>
     </main>
   );
