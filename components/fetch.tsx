@@ -1,34 +1,29 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const WeathAPI = () => {
-    const [data, setData] = useState([]);
-    const accessToken = 'enter API key here'
-    const location = 'London' // Change this later so that it can retrieve the data from the entered location
+const WeatherAPI = () => {
+    const [city, setCity] = useState('');
+    const [weather, setWeather] = useState(null);
+
+    const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCity(event.target.value);
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await fetch(`api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${accessToken}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
-                },
-                body: JSON.stringify({ location })
-            });
-            const jsonResult = await result.json();
-
-            setData(jsonResult);
+        if (city) {
+            const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+                .then(response => response.json())
+                .then(data => setWeather(data));
+            
         }
-
-        fetchData();
-    }, [])
-
+    }, [city])
 
     return ( 
         <div>
-            Test
+            <input type="text" value={city} onChange={handleCityChange} placeholder='Enter city name'/>
+            {weather && <div>{JSON.stringify(weather)}</div>}
         </div>
-    );
+     );
 }
  
-export default WeathAPI;
+export default WeatherAPI;
