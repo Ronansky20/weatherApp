@@ -19,7 +19,7 @@ export default function Home() {
             </form>
             {weather && <div>{JSON.stringify(weather)}</div>}
         </div>
-      <button type="button" onClick={() => router.push('/start')} ></button>
+      <button type="button" onClick={() => router.push('/start')} >Test</button>
     </main>
   );
 }
