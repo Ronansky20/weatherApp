@@ -13,7 +13,7 @@ const WeatherAPI = () => {
         event.preventDefault();
         if (city) {
             const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
-            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+            fetch(`https://api.weatherapi.com/v1/forecast.json?q=${city}&key=${apiKey}`)
                 .then(response => response.json())
                 .then(data => setWeather(data));
         }
