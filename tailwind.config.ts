@@ -15,6 +15,12 @@ const config: Config = {
       },
     },
   },
+  variants: {
+    extend: {
+      borderColor: ['responsive', 'hover', 'focus', 'focus-within'],
+    },
+  },
   plugins: [],
 };
+
 export default config;

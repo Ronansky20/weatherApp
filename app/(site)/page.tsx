@@ -31,9 +31,9 @@ export default function Home() {
         </p>
       </div>
 
-      <div className='font-semibold justify flex justify-center'>
-          <form className='border-transparent border-2' onSubmit={handleSubmit}>
-              <input type="text" onChange={handleCityChange} placeholder='Enter city name' className='font-semibold justify flex justify-center text-center'/>
+      <div className='font-semibold justify flex justify-center focus:border-none'>
+          <form className='focus:border-none' onSubmit={handleSubmit}>
+              <input type="text" onChange={handleCityChange} placeholder='Enter city name' className='font-semibold justify flex justify-center text-center focus:outline-none'/>
           </form>
       </div>
       <h1 className='font-bold text-center text-8xl text-slate-800'>
@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="justify-center flex flex-col bg-neutral-300 rounded-3xl w-11/12 h-100 mt-8 mx-auto">
+      <div className="justify-center flex flex-col bg-neutral-300 rounded-3xl w-11/12 h-full mt-4 mx-auto ">
         <p className='font-light text-sm m-2'>Next days</p>
         <div className='grid-cols-1 grid'>
           <div className='flex items-center'>
@@ -76,7 +76,7 @@ export default function Home() {
               width={64}
               height={64} 
             />
-            <div className='w-full border-white border-2 rounded-full p-2'>
+            <div className='w-full border-white border-2 rounded-full p-2 mb-4 mr-4'>
               <p>FDate Temp here</p>
               <p>Future Date weather here</p>
             </div>
@@ -90,7 +90,7 @@ export default function Home() {
             width={64}
             height={64} 
           />
-          <div className='w-full border-white border-2 rounded-full p-2'>
+          <div className='w-full border-white border-2 rounded-full p-2 mb-4 mr-4'>
             <p>FDate Temp here</p>
             <p>Future Date weather here</p>
           </div>
@@ -103,7 +103,7 @@ export default function Home() {
             width={64}
             height={64} 
           />
-          <div className='w-full border-white border-2 rounded-full p-2'>
+          <div className='w-full border-white border-2 rounded-full p-2 mb-4 mr-4'>
             <p>FDate Temp here</p>
             <p>Future Date weather here</p>
           </div>
@@ -116,7 +116,7 @@ export default function Home() {
             width={64}
             height={64} 
           />
-          <div className='w-full border-white border-2 rounded-full p-2'>
+          <div className='w-full border-white border-2 rounded-full p-2 mr-4'>
             <p>FDate Temp here</p>
             <p>Future Date weather here</p>
           </div>
