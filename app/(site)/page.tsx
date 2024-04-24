@@ -24,7 +24,7 @@ export default function Home() {
 
       <div className='px-4 py-4'>
         <p className='font-semibold text-sm'>
-          Good Morning
+          Good day
         </p>
         <p className='font-light text-xs'>
           {currentDate}
@@ -68,15 +68,21 @@ export default function Home() {
       <div className="justify-center flex flex-col bg-neutral-300 rounded-3xl w-11/12 h-100 mt-8 mx-auto">
         <p className='font-light text-sm m-2'>Next days</p>
         <div className='grid-cols-1 grid'>
-          <Image 
-            className='rounded-full border-transparent border-2 m-2 bg-neutral-400'
-            alt="" 
-            src={weather && weather.current.condition.icon ? `https:${weather.current.condition.icon}` : ''}
-            width={64}
-            height={64} 
-          />
+          <div className='flex items-center'>
+            <Image 
+              className='rounded-full border-transparent border-2 m-2 bg-neutral-400'
+              alt="" 
+              src={weather && weather.current.condition.icon ? `https:${weather.current.condition.icon}` : ''}
+              width={64}
+              height={64} 
+            />
+            <div className='w-full border-white border-2 rounded-full p-2'>
+              <p>FDate Temp here</p>
+              <p>Future Date weather here</p>
+            </div>
+          </div>
         </div>
-        <div className=''>
+        <div className='flex items-center'>
           <Image 
             className='rounded-full border-transparent border-2 m-2 bg-neutral-400'
             alt="" 
@@ -84,17 +90,25 @@ export default function Home() {
             width={64}
             height={64} 
           />
+          <div className='w-full border-white border-2 rounded-full p-2'>
+            <p>FDate Temp here</p>
+            <p>Future Date weather here</p>
+          </div>
         </div>
-        <div className=''>
+        <div className='flex items-center'>
           <Image 
-            className='rounded-full border-transparent border-2 m-2 bg-neutral-400'
+            className='rounded-full border-transparent border-2 m-2 bg-neutral-400 p-2'
             alt="" 
             src={weather && weather.current.condition.icon ? `https:${weather.current.condition.icon}` : ''}
             width={64}
             height={64} 
           />
+          <div className='w-full border-white border-2 rounded-full p-2'>
+            <p>FDate Temp here</p>
+            <p>Future Date weather here</p>
+          </div>
         </div>
-        <div className=''>
+        <div className='flex items-center'>
           <Image 
             className='rounded-full border-transparent border-2 m-2 bg-neutral-400'
             alt="" 
@@ -102,6 +116,10 @@ export default function Home() {
             width={64}
             height={64} 
           />
+          <div className='w-full border-white border-2 rounded-full p-2'>
+            <p>FDate Temp here</p>
+            <p>Future Date weather here</p>
+          </div>
         </div>
       </div>
     </div>
