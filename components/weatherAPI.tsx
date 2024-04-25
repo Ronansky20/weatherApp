@@ -1,9 +1,33 @@
 // WeatherAPI.tsx
 import React, { useState } from 'react';
 
+interface Weather {
+    current: {
+      uv: number;
+      humidity: number;
+      precip_mm: number;
+      temp_c: number;
+      condition: {
+        text: string;
+        icon: string;
+      };
+    };
+    forecast: {
+      forecastday: {
+        hour: Array<{
+          temp_c: number;
+          condition: {
+            icon: string;
+          };
+          time: string;
+        }>;
+      }[];
+    };
+  }
+
 const WeatherAPI = () => {
     const [city, setCity] = useState('');
-    const [weather, setWeather] = useState(null);
+    const [weather, setWeather] = useState<Weather | null>(null);
 
     const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCity(event.target.value);
