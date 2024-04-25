@@ -7,8 +7,8 @@ Framework: [NextJS](https://nextjs.org)
 Hosting: [Vercel](https://vercel.com/)
 
 ## Goals:
-- [ ] Be able to fetch data from an API 
-- [ ] Display said data in a component
+- [x] Be able to fetch data from an API 
+- [x] Display said data in a component
 - [ ] Try to make it look as much like the figma example as possible
 - [ ] Keep it clean and do not use unnecessary packages
 - [ ] Finish within 1 week.
