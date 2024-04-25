@@ -14,14 +14,44 @@ function getDate() {
   return `${month}/${date}/${year}`;
 }
 
+const weatherImages: { [key: string]: string } = {
+  'Sunny': '/weatherIcons/sunny.png',
+  'Cloudy': '/weatherIcons/cloudy.png',
+  'Rain': '/weatherIcons/rain.png',
+  'Snow': '/weatherIcons/snow.png',
+  'Fog': '/weatherIcons/fog.png',
+  'Mist': '/weatherIcons/mist.png',
+  'Haze': '/weatherIcons/hazy.png',
+  'Thunderstorm': '/weatherIcons/tstorms.png',
+  'Clear': '/weatherIcons/clear.png',
+  'Partly cloudy': '/weatherIcons/partlycloudy.png',
+  'Patchy rain possible': '/weatherIcons/rain.png',
+  'Patchy snow possible': '/weatherIcons/snow.png',
+  'Patchy sleet possible': '/weatherIcons/sleet.png',
+}
+
 export default function Home() {
   const { weather, handleCityChange, handleSubmit } = WeatherAPI();
   const router = useRouter();
   const [currentDate] = useState(getDate());
 
+  const backgroundImage = weather?.current?.condition?.text
+    ? weatherImages[weather.current.condition.text]
+    : undefined;
+
   return (
     <div className='grid grid-cols-1 gap-4 mt-5'>
-
+      {backgroundImage && (
+        <div className='absolute inset-0 z-[-1] flex justify-end bg-slate-100'>
+          <Image
+            alt='Background'
+            src={backgroundImage}
+            layout='fill'
+            objectFit='cover'
+            className='filter blur-lg'
+          />
+        </div>
+      )}
       <div className='px-4 py-4'>
         <p className='font-semibold text-sm'>
           Good day
@@ -33,7 +63,7 @@ export default function Home() {
 
       <div className='font-semibold justify flex justify-center focus:border-none'>
           <form className='focus:border-none' onSubmit={handleSubmit}>
-              <input type="text" onChange={handleCityChange} placeholder='Enter city name' className='font-semibold justify flex justify-center text-center focus:outline-none'/>
+              <input type="text" onChange={handleCityChange} placeholder='Enter city name' className='font-semibold justify flex justify-center text-center focus:outline-none bg-transparent'/>
           </form>
       </div>
       <h1 className='font-bold text-center text-8xl text-slate-800'>
@@ -45,81 +75,46 @@ export default function Home() {
       </p>
       <button type="button" onClick={() => router.push('/start')} ></button>
 
-      <div className='justify-center flex bg-neutral-300 rounded-3xl w-11/12 h-full mx-auto'>
-        <div className='grid-cols-3 grid'>
-          <div className="flex flex-col items-center justify-center w-full">
+      <div className='justify-center flex bg-neutral-100 rounded-3xl w-11/12 h-full mx-4 my-3'>
+        <div className='grid-cols-3 grid gap-x-10'>
+          <div className="flex flex-col items-left justify-center w-full">
             <IoIosSunny className="text-neutral-400" size={20}/>
-            <p>UV Index</p>
-            <p>{weather && weather.current && weather.current.uv}</p>
+            <p className='font-light text-sm'>UV Index</p>
+            <p className='font-bold'>{weather && weather.current && weather.current.uv}</p>
           </div>
-          <div className="flex flex-col items-center justify-center w-full">
+          <div className="flex flex-col items-left justify-center w-full">
             <IoIosSunny className="text-neutral-400" size={20}/>
-            <p>Humidity</p>
-            <p>{weather && weather.current && weather.current.humidity}</p>
+            <p className='font-light text-sm'>Humidity</p>
+            <p className='font-bold'>{weather && weather.current && weather.current.humidity}%</p>
           </div>
-          <div className="flex flex-col items-center justify-center w-full">
+          <div className="flex flex-col items-left justify-center w-full">
             <IoIosSunny className="text-neutral-400" size={20}/>
-            <p>Precipation</p>
-            <p>{weather && weather.current && weather.current.precip_mm}mm</p>
+            <p className='font-light text-sm'>Precipation</p>
+            <p className='font-bold'>{weather && weather.current && weather.current.precip_mm}mm</p>
           </div>
         </div>
       </div>
 
-      <div className="justify-center flex flex-col bg-neutral-300 rounded-3xl w-11/12 h-full mt-4 mx-auto ">
-        <p className='font-light text-sm m-2'>Next days</p>
+      <div className="justify-center flex flex-col bg-neutral-300 rounded-3xl w-11/12 h-full mt-4 mx-auto backdrop-filter backdrop-blur-lg bg-opacity-40 border border-white border-opacity-20">
+        <p className='font-light text-sm m-2 text-neutral-800'>Next hours</p>
         <div className='grid-cols-1 grid'>
-          <div className='flex items-center'>
-            <Image 
-              className='rounded-full border-transparent border-2 m-2 bg-neutral-400'
-              alt="" 
-              src={weather && weather.current.condition.icon ? `https:${weather.current.condition.icon}` : ''}
-              width={64}
-              height={64} 
-            />
-            <div className='w-full border-white border-2 rounded-full p-2 mb-4 mr-4'>
-              <p>FDate Temp here</p>
-              <p>Future Date weather here</p>
+          {weather && weather.forecast && weather.forecast.forecastday[0].hour.slice(0, 4).map((hour, index) => (
+            <div key={index} className='flex items-center '>
+              <Image 
+                className='rounded-full border-transparent m-2 bg-slate-800 drop-shadow-sm backdrop-filter backdrop-blur-lg bg-opacity-10 border border-white border-opacity-20'
+                alt="" 
+                src={hour.condition.icon ? `https:${hour.condition.icon}` : ''}
+                width={64}
+                height={64} 
+              />
+              <div className='w-full border-white border-x rounded-full p-2 mb-4 mr-4'>
+                <p>
+                  <span className="font-semibold text-slate-800 pr-4 pl-2">{hour.temp_c}°</span> 
+                  <span className="font-light"> at {String(new Date(hour.time).getHours()).padStart(2, '0')}:{String(new Date(hour.time).getMinutes()).padStart(2, '0')}</span>
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className='flex items-center'>
-          <Image 
-            className='rounded-full border-transparent border-2 m-2 bg-neutral-400'
-            alt="" 
-            src={weather && weather.current.condition.icon ? `https:${weather.current.condition.icon}` : ''}
-            width={64}
-            height={64} 
-          />
-          <div className='w-full border-white border-2 rounded-full p-2 mb-4 mr-4'>
-            <p>FDate Temp here</p>
-            <p>Future Date weather here</p>
-          </div>
-        </div>
-        <div className='flex items-center'>
-          <Image 
-            className='rounded-full border-transparent border-2 m-2 bg-neutral-400 p-2'
-            alt="" 
-            src={weather && weather.current.condition.icon ? `https:${weather.current.condition.icon}` : ''}
-            width={64}
-            height={64} 
-          />
-          <div className='w-full border-white border-2 rounded-full p-2 mb-4 mr-4'>
-            <p>FDate Temp here</p>
-            <p>Future Date weather here</p>
-          </div>
-        </div>
-        <div className='flex items-center'>
-          <Image 
-            className='rounded-full border-transparent border-2 m-2 bg-neutral-400'
-            alt="" 
-            src={weather && weather.current.condition.icon ? `https:${weather.current.condition.icon}` : ''}
-            width={64}
-            height={64} 
-          />
-          <div className='w-full border-white border-2 rounded-full p-2 mr-4'>
-            <p>FDate Temp here</p>
-            <p>Future Date weather here</p>
-          </div>
+          ))}
         </div>
       </div>
     </div>
