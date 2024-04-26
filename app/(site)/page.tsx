@@ -107,11 +107,9 @@ export default function Home() {
                 width={64}
                 height={64} 
               />
-              <div className='w-full border-white border-x rounded-full p-2 mb-4 mr-4'>
-                <p>
-                  <span className="font-semibold text-slate-800 pr-4 pl-2">{hour.temp_c}°</span> 
-                  <span className="font-light"> at {String(new Date(hour.time).getHours()).padStart(2, '0')}:{String(new Date(hour.time).getMinutes()).padStart(2, '0')}</span>
-                </p>
+              <div className='w-full border-white border-x rounded-full p-2 mb-4 mr-4 flex items-center pl-6'>
+                <p className="font-semibold text-slate-800 pr-4">{hour.temp_c}°</p>
+                <p className="font-light">at {String(new Date(hour.time).getHours()).padStart(2, '0')}:{String(new Date(hour.time).getMinutes()).padStart(2, '0')}</p>
               </div>
             </div>
           ))}
