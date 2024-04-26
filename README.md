@@ -1,4 +1,5 @@
 # Weather app Project
+## THIS APP IS SUPPOSED TO BE VIEWED ON MOBILE, ON PC IT WILL NOT LOOK AS GOOD (but it will still function)
 
 ## Resources:
 UI: [Figma Design by Capi Product](https://www.figma.com/community/file/1301388667663240529/weather-app-glassmorphism-design-style)
