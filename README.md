@@ -3,7 +3,7 @@
 
 ## Resources:
 UI: [Figma Design by Capi Product](https://www.figma.com/community/file/1301388667663240529/weather-app-glassmorphism-design-style)
-API: [OpenWeather](https://openweathermap.org/api)
+API: [OpenWeather](https://www.weatherapi.com)
 Framework: [NextJS](https://nextjs.org)
 Hosting: [Vercel](https://vercel.com/)
 
@@ -13,6 +13,17 @@ Hosting: [Vercel](https://vercel.com/)
 - [x] Try to make it look as much like the figma example as possible
 - [x] Keep it clean and do not use unnecessary packages
 - [ ] Finish within 1 week.
+
+## Things that I learned
+- Usage of API's with React.
+- When to apply an Interface.
+- When to apply ReactFC and when not to.
+- How to create a glassmorphism effect using Tailwind
+
+## Things I could've done better
+- Optimization by using components for the seperate elements instead of using just the page.tsx where I made everything.
+- Better research before choosing an API
+- Better research before choosing a design
 
 ## Closing thoughts on the creation of this project.
 Although this project isn't 100% finished yet I have succeeded in finishing the main page which displays all of the info.
