@@ -3,7 +3,7 @@
 
 ## Resources:
 UI: [Figma Design by Capi Product](https://www.figma.com/community/file/1301388667663240529/weather-app-glassmorphism-design-style)
-API: [OpenWeather](https://www.weatherapi.com)
+API: [WeatherAPI](https://www.weatherapi.com)
 Framework: [NextJS](https://nextjs.org)
 Hosting: [Vercel](https://vercel.com/)
 
